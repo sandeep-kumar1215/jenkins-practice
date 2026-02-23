@@ -8,7 +8,7 @@ pipeline {
                 docker { image 'maven:3.8.1-adoptopenjdk-11' }
             }
             steps {
-                dir('backend') {
+                dir('jenkins-applicaton/backend') {
                     sh 'mvn clean package'
                 }
             }
@@ -19,24 +19,17 @@ pipeline {
                 docker { image 'node:16-alpine' }
             }
             steps {
-                dir('frontend') {
+                dir('jenkins-applicaton/frontend') {
                     sh 'npm install'
                     sh 'npm run build'
                 }
             }
         }
 
-        stage('Docker Build') {
+        stage('Success') {
             agent any
             steps {
-                sh 'docker build -t campus-study-backend ./backend'
-                sh 'docker build -t campus-study-frontend ./frontend'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo "Application deployed successfully!"
+                echo "Application Build Successful!"
             }
         }
     }
