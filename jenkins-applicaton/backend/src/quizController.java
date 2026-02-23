@@ -1,9 +1,8 @@
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "*")  // Important for React
+@CrossOrigin(origins = "*") 
 public class QuizController {
 
     @GetMapping("/hello")
